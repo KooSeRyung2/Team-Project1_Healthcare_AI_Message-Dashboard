@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<div class="All">
+    <head>
+        <meta charset="UTF-8">
+        
+        <title>ksr 管理者 掲示板</title>
+        
+        
+        <link rel="stylesheet" href="gesipan.css">
+        
+    </head>
+    <body>
+        <!-- 星のアニメーション追加 -->
+        <div class="stars"></div>
+    
+        <!-- ページタイトル -->
+        <div class="main_title">
+            <h1>~ksr 管理者 掲示板~</h1>
+        </div>
+
+        <!-- value 値入力欄を設定したカラム値に変更する -->
+        <!-- DB リクエスト受信 -> api -> value 値を取得し、入力時にはポストマン -> python (api) -> DB -->
+        <div class="in1">
+        <input class="input0" type="text" placeholder="purpose ex.A1,B1..." id="input1">
+		<input class="input0" type="text" placeholder="message" id="input2">
+        <!-- 数字を入力するカラムなので number タイプ設定 -->
+		<input class="input0" type="number" placeholder="mean" id="input3">
+		<input class="input0" type="number" placeholder="meanAddPhrase" id="input4">
+		<input class="input0" type="number" placeholder="meanAddMor" id="input5">
+		<input class="input0" type="number" placeholder="meanAddAll" id="input6">
+        <!-- running Time = メッセージを送信する時間または特定の期間を表示するカラム
+        text と datetime-local の間で悩みましたが前者に設定 -->
+		<input class="input0" type="text" placeholder="running Time" id="input7">
+        <input class="input0" type="text" placeholder="yesValue" id="input8">
+        <input class="input0" type="text" placeholder="noValue" id="input9">
+        </div>
+
+        <!-- ボタン2つ -->
+        <div class="in2">
+        <!-- 後の onclick コードは後で JavaScript を追加するためにあらかじめ記載 -->
+        <input class="inbutton" type='button' id="add" value='押してみて！' onclick='addData()'>
+        <!-- <input class="inbutton" type='button' id="add" value='꾸욱~' onclick='input00()'> -->
+        <!-- 入力ボタンを押すと JavaScript で入力関数を呼び出し-> バックエンドに post リクエストを送り処理 
+         -> バックエンドは応答をフロントエンドに返す-> フロントエンドは応答を処理する方式..? -->
+        <input class="button2" type='button' id="refresh" value='リロード' onclick='location.reload()'>
+        <!-- <input class="button2" type='button' id="add"refresh/ value='새로고침' onclick='input01()'> -->
+        <!-- ページを再ロードするのにバックエンドとの別の通信なしにブラウザがページを再リクエストする方式..? -->
+        </div><br>
+
+        <div class="help">
+        <p>この掲示板は現在稼働中の掲示板です。<br>
+            入力欄にデータを入力し、「押してみて！」ボタンを押すと、データがデータベースに入力され、<br>
+            掲示板をリロードするとデータが表示されます。</p><br>
+        </div><br>
+
+        <!--  個人テーブル -->
+        <table class="table0">
+        <!-- <div class="div0"> -->
+            <tr class="data01">
+                <!-- 最初の行13列結合-->
+                <td colspan="13">個人データ照会</td>
+            </tr>
+            <tr class="data02">
+                <!-- 2番目の行13カラム -->
+                <td>Message ID</td>
+                <td>Purpose</td>
+                <td>Message</td>
+                <td>Mean</td>
+                <td>MeanAddPhrase</td>
+                <td>MeanAddMor</td>
+                <td>MeanAddAll</td>
+                <td>Running Time</td>
+                <td>Send Date</td>
+                <td>Receive Date</td>
+                <td>Yes Value</td>
+                <td>No Value</td>
+                <td>Yes or No</td>
+            </tr>
+
+            <!-- データを挿入するスペース -->
+            <tbody id="personalData"></tbody>
+            
+            <!-- 空行追加 &nbsp; = 空白文字 -->
+            <!-- <tr class="data03">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input class="sendbutton" type='button' id="send" value='메세지 보내기' onclick='input03()'></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr> -->
+        <!-- </div> -->
+        </table><br>
+
+        <!-- 2チームデータ照会 -->
+        <table class="table2">
+        <!-- <div class="div2"> -->
+            <tr class="data21">
+                <!-- 最初の行2列結合 -->
+                <td colspan="2">2チームデータ照会</td>
+            </tr>
+            <tr class="data22">
+                <!-- 2番目の行2カラム -->
+                <td class="data2-1">Message ID</td>
+                <td class="data2-2">Message</td>
+            </tr>
+
+            <!-- データを挿入するスペース -->
+            <tbody id="team2Data"></tbody>
+
+            <!-- 空行追加 &nbsp; = 空白文字 -->
+            <!-- <tr class="data03">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr> -->
+        <!-- </div> -->
+        </table><br>
+
+        <!-- 全体データ照会 -->
+        <table class="table23">
+        <!-- <div class="div23"> -->
+            <tr class="data231">
+                <!-- 最初の行2列結合 -->
+                <td colspan="2">全体データ照会</td>
+            </tr>
+            <tr class="data232">
+                <!-- 2番目の行2カラム -->
+                <td class="data3-1">Message ID</td>
+                <td class="data3-2">Message</td>
+            </tr>
+
+            <!-- データを挿入するスペース -->
+            <tbody id="allData"></tbody>
+
+            <!-- 空行追加 &nbsp; = 空白文字 -->
+            <!-- <tr class="data03">
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr> -->
+        <!-- </div> -->
+        </table><br>
+        <script src="gesipan.js"></script>
+    </body>
+</div>     
+</html>

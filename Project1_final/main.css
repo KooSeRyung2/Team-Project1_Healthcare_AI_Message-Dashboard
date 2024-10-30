@@ -1,0 +1,99 @@
+/* メイン画面のCSS */
+
+body {
+    background: linear-gradient(to bottom, #000033, #1c1c3c, #4b0082, #000000);
+    /* 上から下への背景グラデーション */
+    height: 100vh;
+    /* 背景の高さがブラウザの全体の高さと同じになるように設定 */
+    margin: 0;
+    /* 背景の周りに余白をなくす */
+    overflow: hidden;
+    /* 要素のコンテンツが要素のサイズを超えた場合、超えた部分を非表示にする
+       スクロールバーは表示されず、見えないコンテンツはクリッピングされる */
+    /* クリッピング = 要素の特定の部分を隠す技術 */
+    position: relative;
+    /* 背景の位置を相対的に設定 */
+
+    /* background-color: #030b1a; */
+    h1 {
+        color: silver;
+        /* 文字の色 */
+        display: flex;
+        /* 要素をflexboxコンテナとして設定 */
+        align-items: center;
+        /* コンテナ内の子要素を縦方向に中央揃え */
+        justify-content: center;
+        /* コンテナ内の子要素を水平方向に中央揃え */
+        text-align: center;
+        /* テキストを水平方向に中央揃え */
+    }
+}
+
+/* ボタン */
+
+/* 親divスタイル(中央揃えのため) */
+.tableA, .tableB, .tableC {
+    display: flex;
+    /* 要素をflexboxコンテナとして設定 */
+    justify-content: center;  
+    /* 水平方向の中央揃え */
+    align-items: center;
+    /* 垂直方向の中央揃え */
+    height: 10vh;
+    /* 親divの高さを画面全体の高さに設定 */
+}
+
+/* ボタンスタイル */
+.button1, .button2, .button3, .button4, .button5, .button6, 
+.button7, .button8, .button9, .button10, .button11 {
+    display: inline-block;
+    /* ブロック要素のように幅と高さを持ちながら、インライン要素のように並べる */
+    font-size: 15px;
+    /* ボタンの文字サイズ */
+    background-color: dimgray;
+    /* ボタンの背景色 */
+    color: whitesmoke;
+    /* ボタンの文字色 */
+    border: none;
+    /* ボタンの枠を削除 */
+    border-radius: 20px;
+    /* ボタンの枠を丸く設定 */
+    padding: 10px 20px;
+    /* 上下10px、左右20pxの余白設定 */
+    text-align: center;
+    /* 文字を中央に配置 */
+    transition: background-color 0.3s; 
+    /* 滑らかなトランジション効果の追加 */
+    margin: 5px; 
+    /* ボタン間の間隔の追加 */
+}
+
+/* ゴールド背景に黒文字色 */
+.button6 {
+    background-color: gold;
+    color: rgb(0, 0, 0);
+}
+
+/* ボタンにカーソルが乗ったときの色変更 */
+.button1:hover, .button2:hover, .button3:hover, .button4:hover, .button5:hover,
+.button7:hover, .button8:hover, .button9:hover, .button10:hover, .button11:hover {
+    background-color: #ada264;
+}
+
+.button6:hover {
+    background-color: silver;
+}
+
+/* ボタンにフォーカスが移動した時の白枠 */
+.button1:focus, .button2:focus, .button3:focus, .button4:focus, .button5:focus,
+.button6:focus, .button7:focus, .button8:focus, .button9:focus, .button10:focus, .button11:focus {
+    box-shadow: 0 0 0 1px rgb(49, 80, 100);
+}
+
+/* クリックした時および解除するまで枠の色を変更 */
+.button1:active, .button2:active, .button3:active, .button4:active, .button5:active,
+.button6:active, .button7:active, .button8:active, .button9:active, .button10:active, .button11:active {
+    background-color: silver;
+}
+
+

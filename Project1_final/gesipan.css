@@ -1,0 +1,408 @@
+/* 게시板 css */
+/* 入力欄 & ボタン */
+body{
+    background: linear-gradient(to bottom, #000033, #1c1c3c, #4b0082, #000000);
+    /* 上から下への背景グラデーション */
+    height: 100vh;
+    /* 背景の高さをブラウザウィンドウの全高と同じにする */
+    margin: 0;
+    /* 背景の周りに余白がないようにする */
+    /* overflow: hidden; */
+    /* 要素のコンテンツが要素のサイズを超えるとき、超えた部分を隠す~ 
+    スクロールバーが表示されず、見えないコンテンツはクリッピングされる */
+    /* クリッピング = 要素の特定部分を隠す技術-(調査ファイル) */
+    position: relative;
+    /* 背景の位置を相対的に設定-(調査ファイル) */
+
+    /* background-color: #030d20; */
+    h1{
+    color: rgb(255, 255, 182);
+    /* 掲示板の名前の色を指定 */
+    }
+    
+}
+
+/* アニメーションを通じて空を浮かぶ効果を実現 */
+.stars {
+    width: 1px;
+    height: 1px;
+    /* 星のサイズを1px x 1pxに設定 */
+    background: transparent;
+    /* 星の背景を透明にする */
+    box-shadow: 
+        50px 100px #ffffff, 80px 50px #ffffff, 100px 150px #ffffff, 130px 70px #ffffff,
+        180px 200px #ffffff, 220px 120px #ffffff, 250px 180px #ffffff, 280px 50px #ffffff,
+        320px 250px #ffffff, 360px 150px #ffffff, 400px 220px #ffffff, 430px 80px #ffffff,
+        470px 200px #ffffff, 500px 90px #ffffff ;
+    /* 複数の星の値をカンマで区切って設定、各星の位置と色を定義 */
+    animation: animStar 200s linear infinite; 
+    /* アニメーションの時間を200秒に設定 */
+    /* animStarというアニメーションを使用し、200秒間線形に（linear）無限繰り返す（infinite） */
+    /* 線形的 = アニメーションの進行速度が一定である~ */
+    position: absolute;
+    /* 星を絶対位置に設定 */
+    /* 文書の一般的な流れから外れる */
+}
+
+@keyframes animStar {
+/* CSSアニメーションを定義するために使用。
+アニメーションの中間状態を指定し、どの属性がどのように変化するかを設定する */
+    from { transform: translateY(0px); }
+    /* アニメーションの開始状態 */
+    /* 初めにY軸位置が0px */
+    to { transform: translateY(-2000px); }
+    /* アニメーションの終了状態 */
+    /* 星がY軸方向に-2000px移動する=星は上方向に2000px分移動 */
+}
+/* @keyframes = アニメーションの各段階で属性の値を指定。
+これはパーセンテージ（%）で指定されるかfromとtoキーワードで開始と終了を指定できる~ */
+
+/* value 値入力欄を中央に水平方向に設定 */
+.in1{
+    text-align: center;
+    /*ブロック要素の内部テキストとインライン子要素を水平方向に中央に揃える*/
+}
+
+/* ボタン */
+/* 親divスタイル（中央揃えのため） */
+.in2 {
+    display: flex;
+    /*要素をflexboxコンテナにする*/
+    justify-content: center;
+    /* 水平中央揃え */
+    align-items: center;
+    /* 垂直中央揃え */
+    height: 10vh; 
+    /* 親divの高さを画面全体の高さに設定 */
+}
+
+/* ボタンスタイル */
+.button2, .inbutton {
+    display: inline-block;
+    /* ブロック要素のように幅と高さを持ちながらインライン要素のように並べる */
+    font-size: 10px;
+    /* ボタンの文字サイズ */
+    background-color: gray;
+    /* ボタンの色 */
+    color: whitesmoke;
+    /* ボタンの文字色 */
+    border: none;
+    /* ボタンの境界線をなくす */
+    border-radius: 20px;
+    /* ボタンを丸くする~ */
+    padding: 10px 20px;
+    /* 上下10px、左右20pxの余白を設定 */
+    text-align: center;
+    /* 文字を中央に揃える */
+    transition: background-color 0.3s; 
+    /* スムーズな遷移効果を追加 */
+    margin: 5px; 
+    /* ボタン間の間隔を追加 */
+}
+
+/* ボタンにカーソルが乗ったときの色変更 */
+.button2:hover, .inbutton:hover {
+    background-color: #2d2b1e;
+}
+
+.sendbutton:hover {
+    background-color: #94820b;
+}
+
+/* ボタンにフォーカス移動時の境界線 */
+.button2:focus, .inbutton:focus, .sendbutton:focus {
+    box-shadow: 0 0 0 1px rgb(49, 80, 100);
+}
+
+/* ボタンをクリックして解放するまで */
+.button2:active, .inbutton:active, .sendbutton:active {
+    background-color: silver;
+}
+
+/* 内部スタイル */
+.help {
+    text-align: center; /* 中央揃え */
+    color: silver; 
+    padding: 10px; /* 余白を追加 */
+    display: flex; /* フレックスボックスを使用 */
+    flex-direction: column; /* 縦方向に配置 */
+    justify-content: center; /* 垂直中央揃え */
+    align-items: center; /* 水平中央揃え */
+    text-align: center; /* 中央揃え */
+}
+
+p {
+    margin: 0; /* pタグの基本余白を削除 */
+}
+
+
+/* 게시판 이름 */
+.main_title{
+    display: flex;
+    /* flexbox コンテナは子要素を柔軟に配置し、整列することができる特別なコンテナ */
+    /* 子要素はflex コンテナ内でflex アイテムになる */
+    align-items: center;
+    /* コンテナの高さ内で子要素が垂直に中央に位置する */
+    justify-content: center;
+    /* コンテナの幅内で子要素が水平方向に中央に位置する */
+    text-align: center;
+    /* テキストを水平方向に中央に整列 */
+}
+
+/* 테이블 1,2,3 */
+
+/* 테이블 div */
+.div0, .div2, .div23 {
+    border-width: 3px;
+    /* テーブルボーダーの厚さ */
+    border-color: rgb(186, 186, 82);
+    /* ボーダーの色を設定 */
+    border-style: dashed;
+    /* ボーダースタイルは長い点線 */
+    margin-bottom: 20px; 
+    /* 各テーブルの間に余白を追加 */
+}
+
+table {
+    margin: 0 auto; 
+    /* テーブルを中央揃え */
+    border-collapse: collapse; 
+    /* テーブルのボーダーを重ねる */
+    width: 90%; 
+    /* テーブルの幅を調整 */
+    text-align: center; 
+    /* 中央揃え */
+}
+
+.table0, .table2, .table23 {
+    border: 2px solid rgb(157, 157, 223); 
+    /* tdとthのボーダー色 */
+    padding: 10px;
+    /* 上下左右に10pxの余白 */
+    text-align: center; 
+    /* 中央揃え */
+}
+
+/* テーブルセルスタイルを優先適用 */
+th, td {
+    border: 1px dotted white; 
+    /* ボーダー設定 */
+    padding: 5px;
+    /* 上下左右に5pxの余白 */
+    text-align: center; 
+    /* 文字中央揃え */
+    color: silver;  /* データセルの文字色を銀色に設定 */
+}
+
+/* テーブルリストセルスタイル */
+.data02, .data22, .data232 {
+    padding: 5px;
+    /* 上下左右に5pxの余白 */
+    text-align: center;
+    /* 文字中央揃え */
+    color: silver;  /* データセルの文字色を銀色に設定 */
+}
+
+/* 空行スタイル */
+.data03 td {
+    border: 1px dotted yellow; 
+    /* 空行のボーダー設定 */
+}
+
+
+/* メッセージ送信ボタンのスタイル */
+
+.sendbutton {
+    display: inline-block;
+    /* ブロック要素のように幅と高さを持ちながらインライン要素のように並べる */
+    font-size: 10px;
+    /* ボタンの文字サイズ */
+    background-color: rgba(165, 11, 170, 0.589);
+    /* ボタンの色 */
+    color: rgb(239, 247, 197);
+    /* ボタンの文字色 */
+    border: none;
+    /* ボタンのボーダーをなくす */
+    border-radius: 20px;
+    /* ボタンを丸くする */
+    padding: 10px 12px;
+    /* 上下10px、左右20pxの余白を設定 */
+    text-align: center;
+    /* 文字を中央に揃える */
+    transition: background-color 0.3s; 
+    /* スムーズな遷移効果を追加 */
+    margin: 5px; 
+    /* ボタン間の間隔を追加 */
+    white-space: pre-wrap; /* 改行を許可 */
+    line-height: 1.2; /* 行間隔を調整 */
+    word-break: break-word; /* 単語が長い場合の改行 */
+}
+
+
+/* 個人照会テーブル */
+.data01 {
+    /* color: #FFD700; */
+    color: #D8BFD8; /* ラベンダー色 */
+}
+
+.data02 {
+    /* color: silver; */
+    color: rgb(99, 99, 255); /* 青色 */
+    font-size: 12px;
+    /* 文字サイズ */
+}
+
+/* 2チーム照会テーブル */
+.data21 {
+    /* color: rgb(202, 237, 75); */
+    color: #D8BFD8; /* ラベンダー色 */
+}
+
+.data22 {
+    /* color: silver; */
+    color: rgb(99, 99, 255); /* 青色 */
+    font-size: 12px;
+    /* 文字サイズ */
+}
+
+/* 全体照会テーブル */
+.data231 {
+    /* color: rgb(133, 199, 249); */
+    color: #D8BFD8; /* ラベンダー色 */
+}
+
+.table23 .data232 {
+    /* color: silver; */
+    color: rgb(99, 99, 255); /* 青色 */
+    font-size: 12px;
+    /* 文字サイズ */
+}
+
+/* 全体、チーム照会テーブル messageId カラムのサイズ調整 */
+
+.data2-1, .data3-1 {
+    width: 10%;
+}
+
+/* boardDB1_ksr6の firstmessages の各カラムの幅を設定する CSS クラス */
+.column-messageId {
+    width: 5%;
+}
+
+.column-purpose {
+    width: 3%;
+}
+
+.column-message {
+    width: 20%;
+}
+
+.column-mean {
+    width: 7%;
+}
+
+.column-meanAddPhrase {
+    width: 7%;
+}
+
+.column-meanAddMor {
+    width: 7%;
+}
+
+.column-meanAddAll {
+    width: 7%;
+}
+
+.column-runningTime {
+    width: 15%;
+}
+
+.column-sendDate {
+    width: 10%;
+}
+
+.column-receiveDate {
+    width: 12%;
+}
+
+.column-yesValue {
+    width: 5%;
+}
+
+.column-noValue {
+    width: 5%;
+}
+
+.column-confirmStatus {
+    width: 5%;
+}
+
+
+/* boardDB1_ksr6の answermessages の各カラムの幅を設定する CSS クラス  */
+
+.column-messageId-2 {
+    width: 5%;
+    color: #FFD700;
+    /* 文字色 */
+}
+
+.column-purpose-2 {
+    width: 3%;
+    color: #FFD700;
+}
+
+.column-message-2 {
+    width: 20%;
+    color: #FFD700;
+}
+
+.column-mean-2 {
+    width: 7%;
+    color: #FFD700;
+}
+
+.column-meanAddPhrase-2 {
+    width: 7%;
+    color: #FFD700;
+}
+
+.column-meanAddMor-2 {
+    width: 7%;
+    color: #FFD700;
+}
+
+.column-meanAddAll-2 {
+    width: 7%;
+    color: #FFD700;
+}
+
+.column-runningTime-2 {
+    width: 15%;
+    color: #FFD700;
+}
+
+.column-sendDate-2 {
+    width: 10%;
+    color: #FFD700;
+}
+
+.column-receiveDate-2 {
+    width: 12%;
+    color: #FFD700;
+}
+
+.column-yesValue-2 {
+    width: 5%;
+    color: #FFD700;
+}
+
+.column-noValue-2 {
+    width: 5%;
+    color: #FFD700;
+}
+
+.column-confirmStatus-2 {
+    width: 5%;
+    color: #FFD700;
+}
+
